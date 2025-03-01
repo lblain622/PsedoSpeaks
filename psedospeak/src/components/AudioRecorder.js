@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import { uploadAndProcessAudio } from '../utils/geminiClient';
-import {Button} from "@heroui/react";
+
 
 export default function AudioRecorder() {
   const [isRecording, setIsRecording] = useState(false);
@@ -69,9 +69,9 @@ export default function AudioRecorder() {
   return (
     <div>
 
-      <Button onClick={toggleRecord} className={"bg-amber-500"}>
+      <button onClick={toggleRecord} className={"bg-amber-500"}>
         {isRecording ? 'Stop Recording' : 'Start Recording'}
-      </Button>
+      </button>
       <div>
         <h3>🧠 Gemini's Response:</h3>
         {response ? (
