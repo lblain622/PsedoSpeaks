@@ -1,10 +1,10 @@
-import ChatBox from '../components/ChatBox';
+import AudioRecorder from '../components/AudioRecorder';
 
 export default function Home() {
   return (
     <div>
-      <h1>Welcome</h1>
-      <ChatBox />
+      <h1>🗣 Talk to Gemini</h1>
+      <AudioRecorder />
     </div>
   );
 }
