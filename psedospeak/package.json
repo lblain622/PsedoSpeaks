@@ -9,9 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroui/card": "^2.2.14",
+    "@heroui/input": "^2.4.15",
+    "@heroui/system": "^2.4.11",
+    "@heroui/theme": "^2.4.11",
+    "framer-motion": "^12.4.7",
+    "next": "15.2.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.2.0"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
