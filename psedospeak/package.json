@@ -9,11 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@heroui/card": "^2.2.14",
     "@heroui/input": "^2.4.15",
     "@heroui/system": "^2.4.11",
     "@heroui/theme": "^2.4.11",
     "framer-motion": "^12.4.7",
+=======
+    "@google-cloud/speech": "^6.7.1",
+    "@google/generative-ai": "^0.22.0",
+    "@heroui/react": "^2.7.4",
+>>>>>>> origin/main
     "next": "15.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
