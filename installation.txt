@@ -1,0 +1,2 @@
+npx heroui-cli@latest add input
+npx heroui-cli@latest add card
