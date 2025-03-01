@@ -1,8 +1,10 @@
-import Image from "next/image";
-import AudioRecorder from "./Recording";
+import AudioRecorder from '../components/AudioRecorder';
 
 export default function Home() {
   return (
-    <AudioRecorder/>
+    <div>
+      <h1>🗣 Talk to Gemini</h1>
+      <AudioRecorder />
+    </div>
   );
 }
