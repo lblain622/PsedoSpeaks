@@ -1,0 +1,7 @@
+name="psedospeaks"
+
+compatibility_date = "2024-03-01"
+compatibility_flags = ["nodejs_compat"]
+
+main=".worker-next/index.mjs"
+assets={directory=".worker-next/assets",binding="ASSETS"}
