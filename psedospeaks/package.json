@@ -20,15 +20,15 @@
     "ci": "^2.3.0",
     "framer-motion": "^12.4.7",
     "next": "15.1.6",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.8",
     "@cloudflare/workers-types": "^4.20250224.0",
-    "vercel": "^41.3.0",
-    "wrangler": "^3.111.0",
     "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "vercel": "^25.2.0",
+    "wrangler": "^3.111.0"
   }
 }
