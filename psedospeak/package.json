@@ -13,6 +13,7 @@
     "deploy:worker": "npm run build:worker && wrangler deploy"
   },
   "dependencies": {
+    "@ast-grep/napi": "^0.35.0",
     "@google-cloud/speech": "^6.7.1",
     "@google/generative-ai": "^0.22.0",
     "@heroui/react": "^2.7.4",
