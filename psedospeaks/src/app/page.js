@@ -1,6 +1,6 @@
 import AudioRecorder from "@/components/AudioRecorder";
 import ToggleInvertColors from "@/components/theme";
-
+export const runtime = 'edge';
 export default function Home() {
   return (
     <div>
