@@ -1,15 +1,28 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
-import { uploadAndProcessAudio } from '../utils/geminiClient';
-
+import { useState, useRef, useEffect } from 'react';
+import { uploadAndProcessAudio, getLatestGeminiResponse } from '../utils/geminiClient';
 
 export default function AudioRecorder() {
   const [isRecording, setIsRecording] = useState(false);
-  const [response, setResponse] = useState('');
+  const [response, setResponse] = useState(null);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
   const streamRef = useRef(null);
+
+  useEffect(() => {
+    // Cargar la última respuesta guardada al iniciar
+    fetchLatestResponse();
+  }, []);
+
+  const fetchLatestResponse = async () => {
+    try {
+      const latestResponse = await getLatestGeminiResponse();
+      setResponse(latestResponse);
+    } catch (error) {
+      console.error('Error fetching latest response:', error);
+    }
+  };
 
   const startRecording = async () => {
     try {
@@ -28,24 +41,22 @@ export default function AudioRecorder() {
       recorder.onstop = async () => {
         const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
 
-        // Convertimos el Blob en un File
         const file = new File([audioBlob], 'audio.webm', { type: 'audio/webm' });
 
         try {
-          const geminiResponse = await uploadAndProcessAudio(file);
-          setResponse(geminiResponse);
+          await uploadAndProcessAudio(file);
+          await fetchLatestResponse(); // Cargar la respuesta actualizada después del procesamiento
         } catch (error) {
-          console.error('❌ Error processing audio:', error);
-          setResponse('An error occurred while processing the audio.');
+          console.error('Error processing audio:', error);
         }
 
-        audioChunksRef.current = []; // Limpiar la memoria
+        audioChunksRef.current = [];
       };
 
       recorder.start();
       setIsRecording(true);
     } catch (error) {
-      console.error('❌ Error accessing microphone:', error);
+      console.error('Error accessing microphone:', error);
     }
   };
 
@@ -56,7 +67,7 @@ export default function AudioRecorder() {
     }
 
     if (streamRef.current) {
-      streamRef.current.getTracks().forEach(track => track.stop()); // Detener el micrófono
+      streamRef.current.getTracks().forEach(track => track.stop());
     }
   };
   const toggleRecord = () => {
@@ -75,11 +86,17 @@ export default function AudioRecorder() {
       <div>
         <h3>🧠 Gemini's Response:</h3>
         {response ? (
-          <ul>
-            {response.split('\n').map((line, index) => (
-              <li key={index}>{line}</li>
-            ))}
-          </ul>
+          <div>
+            <p><strong>📥 Input:</strong> {response.input}</p>
+            <p><strong>📤 Output:</strong></p>
+            <ul>
+              {response.output.split('\n').map((line, index) => (
+                <li key={index}>{line}</li>
+              ))}
+            </ul>
+            <p><strong>🔍 Variables:</strong> {response.variables.join(', ')}</p>
+            <p><strong>💬 Feedback:</strong> {response.feedback}</p>
+          </div>
         ) : (
           <p>No response yet.</p>
         )}
