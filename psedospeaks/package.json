@@ -22,7 +22,6 @@
     "ci": "^2.3.0",
     "framer-motion": "^12.4.7",
     "next": "15.1.6",
-    "psedospeak": "file:",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
