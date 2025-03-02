@@ -9,9 +9,6 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
-  "build": {
-    "command": "npm run pages:build"
-  },
   "observability": {
     "enabled": true
   },
@@ -20,6 +17,5 @@
       "binding": "PS",
       "id": "d0886f236a2c46ca9bfdb9a6d13230b9"
     }
-  ],
-  "pages_build_output_dir": ".open-next/static"
+  ]
 }
