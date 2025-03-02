@@ -1,28 +1,18 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { uploadAndProcessAudio, getLatestGeminiResponse } from '../utils/geminiClient';
+import React, { useState, useRef } from 'react';
+import { uploadAndProcessAudio } from '../utils/geminiClient';
+
+import { Textarea } from "@heroui/input";
+import { Card, CardHeader, CardBody, CardFooter } from "@heroui/react";
 
 export default function AudioRecorder() {
   const [isRecording, setIsRecording] = useState(false);
-  const [response, setResponse] = useState(null);
+  const [response, setResponse] = useState(null); // Store the API response
+  const [isButtonClicked, setIsButtonClicked] = useState(false); // Track button click
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
   const streamRef = useRef(null);
-
-  useEffect(() => {
-    // Cargar la última respuesta guardada al iniciar
-    fetchLatestResponse();
-  }, []);
-
-  const fetchLatestResponse = async () => {
-    try {
-      const latestResponse = await getLatestGeminiResponse();
-      setResponse(latestResponse);
-    } catch (error) {
-      console.error('Error fetching latest response:', error);
-    }
-  };
 
   const startRecording = async () => {
     try {
@@ -41,22 +31,29 @@ export default function AudioRecorder() {
       recorder.onstop = async () => {
         const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
 
+        // Convert the Blob into a File
         const file = new File([audioBlob], 'audio.webm', { type: 'audio/webm' });
 
         try {
-          await uploadAndProcessAudio(file);
-          await fetchLatestResponse(); // Cargar la respuesta actualizada después del procesamiento
+          const geminiResponse = await uploadAndProcessAudio(file);
+          setResponse(geminiResponse); // Store the API response
         } catch (error) {
-          console.error('Error processing audio:', error);
+          console.error('❌ Error processing audio:', error);
+          setResponse({
+            input: "Error",
+            output: "An error occurred while processing the audio.",
+            variables: [],
+            feedback: "Please try again.",
+          });
         }
 
-        audioChunksRef.current = [];
+        audioChunksRef.current = []; // Clear memory
       };
 
       recorder.start();
       setIsRecording(true);
     } catch (error) {
-      console.error('Error accessing microphone:', error);
+      console.error('❌ Error accessing microphone:', error);
     }
   };
 
@@ -67,9 +64,10 @@ export default function AudioRecorder() {
     }
 
     if (streamRef.current) {
-      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current.getTracks().forEach(track => track.stop()); // Stop the microphone
     }
   };
+
   const toggleRecord = () => {
     if (isRecording) {
       stopRecording();
@@ -77,30 +75,67 @@ export default function AudioRecorder() {
       startRecording();
     }
   };
-  return (
-    <div>
 
-      <button onClick={toggleRecord} className={"bg-amber-500"}>
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black p-4" style={{ color: 'red' }}>
+      {/* Start/Stop Recording Button */}
+      <button
+        onClick={() => {
+          toggleRecord();
+          setIsButtonClicked(true); // Show the Textarea after clicking
+        }}
+        className={"bg-amber-500 px-4 py-2 rounded"}
+      >
         {isRecording ? 'Stop Recording' : 'Start Recording'}
       </button>
-      <div>
-        <h3>🧠 Gemini's Response:</h3>
-        {response ? (
-          <div>
-            <p><strong>📥 Input:</strong> {response.input}</p>
-            <p><strong>📤 Output:</strong></p>
-            <ul>
-              {response.output.split('\n').map((line, index) => (
-                <li key={index}>{line}</li>
-              ))}
-            </ul>
-            <p><strong>🔍 Variables:</strong> {response.variables.join(', ')}</p>
-            <p><strong>💬 Feedback:</strong> {response.feedback}</p>
-          </div>
-        ) : (
-          <p>No response yet.</p>
-        )}
-      </div>
+
+      {/* Conditional Rendering */}
+      {!isButtonClicked ? (
+        <p>No response yet.</p> // Initial state
+      ) : response ? (
+        <Card className="w-full max-w-4xl mt-8">
+          <CardHeader>
+            <h1 className="text-2xl font-bold">App Functionality</h1>
+          </CardHeader>
+
+          <CardBody className="space-y-4">
+            {/* Input Section */}
+            <p className="text-lg font-semibold">
+              📥 Input: {response.input || "N/A"}
+            </p>
+
+            <Textarea
+              className="w-full bg-yellow-200 rounded-lg border border-black p-4 leading-normal"
+              description=""
+              label=""
+              placeholder="Start writing your pseudo code here!"
+              variant="faded"
+              size="lg"
+              value={
+                response
+                  ? `📤 Output:\n${(response.output || "").split('\n').join('\n')}`
+                  : ""
+              }
+              onChange={(e) => setResponse(e.target.value)} // Optional: Allow editing
+            />
+
+            <div className="space-y-2">
+              <p>
+                🔍 Variables: {(response.variables || []).join(', ') || "N/A"}
+              </p>
+              <p>
+                💬 Feedback: {response.feedback || "N/A"}
+              </p>
+            </div>
+          </CardBody>
+
+          <CardFooter>
+            {/* Optional Footer Content */}
+          </CardFooter>
+        </Card>
+      ) : (
+        <p>Processing audio...</p> // Loading state
+      )}
     </div>
   );
 }

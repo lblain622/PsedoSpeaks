@@ -1,9 +1,8 @@
 {
-  "input": "The audio requests pseudocode for implementing a jump instruction in assembly language.",
-  "output": "```\nBEGIN\n  GET jump_address  //Obtain the memory address to jump to.  This could be a label or a calculated address.\n  SET instruction_pointer TO jump_address //Update the instruction pointer to the new address.\nEND\n```",
+  "input": "Generate pseudocode for a FizzBuzz program in Java.",
+  "output": "```\nStart\n  For each number from 1 to 100:\n    If number is divisible by 3 and 5:\n      Print \"FizzBuzz\"\n    Else if number is divisible by 3:\n      Print \"Fizz\"\n    Else if number is divisible by 5:\n      Print \"Buzz\"\n    Else:\n      Print the number\n  End For\nEnd\n```",
   "variables": [
-    "* jump_address",
-    "* instruction_pointer"
+    "* number"
   ],
-  "feedback": "The pseudocode is very high-level.  It needs more detail to be truly useful.  For example, it omits how `jump_address` is obtained (e.g., from a label lookup table, direct calculation). It also simplifies the instruction pointer update; in reality, this process might involve more steps depending on the specific assembly architecture.  Error handling (e.g., what if `jump_address` is invalid?) is also absent.  More robust pseudocode would include these considerations."
+  "feedback": "The pseudocode is clear and concise, accurately reflecting the core logic of the FizzBuzz problem.  However, it could benefit from explicitly stating the data type of the `number` variable (e.g., integer) for improved clarity, although this is often implicit in pseudocode.  Adding a more robust error handling mechanism (although unlikely needed for this specific problem) would make it more complete."
 }
