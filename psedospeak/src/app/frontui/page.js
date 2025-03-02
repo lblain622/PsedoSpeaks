@@ -1,5 +1,5 @@
 
-import {Textarea} from "@heroui/input";
+import {Textarea} from "@heroui/react";
 import {Card, CardHeader, CardBody, CardFooter} from "@heroui/react";
 
 export default function Dashboard() {
