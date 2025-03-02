@@ -6,16 +6,25 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "scripts": {
+      "deploy:worker": "npm run build:worker && wrangler deploy",
+      "build:worker": "opennextjs-cloudflare"
+    }
   },
   "dependencies": {
+    "@ast-grep/napi": "^0.35.0",
     "@google-cloud/speech": "^6.7.1",
     "@google/generative-ai": "^0.22.0",
+    "@heroui/react": "^2.7.4",
+    "ci": "^2.3.0",
     "next": "15.2.0",
+    "psedospeak": "file:",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^0.5.7",
     "@tailwindcss/postcss": "^4",
     "tailwindcss": "^4"
   }

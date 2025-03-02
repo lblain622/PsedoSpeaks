@@ -7,7 +7,7 @@ export async function uploadAndProcessAudio(file) {
       method: "POST",
       body: formData,
     });
-
+    
     if (!response.ok) {
       throw new Error("Failed to upload and process audio.");
     }
