@@ -7,4 +7,4 @@ main = ".open-next/worker.js"
 assets={directory=".worker-next/assets",binding="ASSETS"}
 
 [build]
-command = "npm install --no-optional && npm run build"
+command = "npm install && npm run build"
