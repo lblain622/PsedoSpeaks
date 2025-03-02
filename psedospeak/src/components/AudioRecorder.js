@@ -1,5 +1,7 @@
+// src/components/AudioRecorder.js
 'use client';
 
+import styles from './AudioRecorder.module.css';
 import { useState, useRef, useEffect } from 'react';
 import { uploadAndProcessAudio, getLatestGeminiResponse } from '../utils/geminiClient';
 
@@ -72,27 +74,32 @@ export default function AudioRecorder() {
   };
 
   return (
-    <div>
-      <h2>🎙 Record Audio</h2>
-      <button onClick={isRecording ? stopRecording : startRecording}>
-        {isRecording ? '🛑 Stop Recording' : '🎤 Start Recording'}
-      </button>
-      <div>
-        <h3>🧠 Gemini's Response:</h3>
+    <div className={styles['audio-recorder-container']}>
+      <h2 className={styles.title}>Record Audio</h2>
+      <div className={styles.controls}>
+        <button
+          className={`${styles['record-button']} ${isRecording ? styles.stop : styles.start}`}
+          onClick={isRecording ? stopRecording : startRecording}
+        >
+          {isRecording ? 'Stop Recording' : 'Start Recording'}
+        </button>
+      </div>
+      <div className={styles['response-section']}>
+        <h3 className={styles.subtitle}>Gemini's Response:</h3>
         {response ? (
-          <div>
-            <p><strong>📥 Input:</strong> {response.input}</p>
-            <p><strong>📤 Output:</strong></p>
-            <ul>
+          <div className={styles['response-content']}>
+            <p><strong>Input:</strong> {response.input}</p>
+            <p><strong>Output:</strong></p>
+            <pre className={styles['code-block']}>
               {response.output.split('\n').map((line, index) => (
-                <li key={index}>{line}</li>
+                <span key={index}>{line}<br /></span>
               ))}
-            </ul>
-            <p><strong>🔍 Variables:</strong> {response.variables.join(', ')}</p>
-            <p><strong>💬 Feedback:</strong> {response.feedback}</p>
+            </pre>
+            <p><strong>Variables:</strong> {response.variables.join(', ')}</p>
+            <p><strong>Feedback:</strong> {response.feedback}</p>
           </div>
         ) : (
-          <p>No response yet.</p>
+          <p className={styles['no-response']}>No response yet.</p>
         )}
       </div>
     </div>
