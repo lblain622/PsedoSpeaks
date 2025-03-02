@@ -1,38 +1,38 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-
-const API_KEY = "AIzaSyBA8Dj4xZ2tLlcK9jZtvkjpf_qMZLKGp6U"; 
-const genAI = new GoogleGenerativeAI(API_KEY);
-
 export async function uploadAndProcessAudio(file) {
+  const formData = new FormData();
+  formData.append("audio", file); // 🔹 Ahora coincide con el backend
+
   try {
-    const fileData = await readFileAsBase64(file);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const response = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    });
 
-    const result = await model.generateContent([
-      "The user will provide a requirement in the form of audio. Your task is to analyze it and generate a solution in pseudocode. Do not write actual code, but rather a high-level structure that represents the logic of the solution.",
-      {
-        inlineData: {
-          data: fileData,
-          mimeType: file.type,
-        },
-      },
-    ]);
+    if (!response.ok) {
+      throw new Error("Failed to upload and process audio.");
+    }
 
-    return result.response.text();
+    const data = await response.json();
+    return data.response; // 🔹 Ahora devuelve la respuesta procesada correctamente
   } catch (error) {
-    console.error("Error processing the audio file:", error);
+    console.error("Error sending audio:", error);
     throw error;
   }
 }
 
-function readFileAsBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      const base64Data = reader.result.split(',')[1];
-      resolve(base64Data);
-    };
-    reader.onerror = (error) => reject(error);
-  });
+// 🔹 Nueva función corregida para obtener la última respuesta guardada
+export async function getLatestGeminiResponse() {
+  try {
+    const response = await fetch("/api/upload");
+
+    if (!response.ok) {
+      if (response.status === 404) return null; // 🔹 Manejo de error si no hay datos aún
+      throw new Error("Failed to fetch latest Gemini response.");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching latest response:", error);
+    return null;
+  }
 }
