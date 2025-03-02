@@ -70,12 +70,18 @@ export default function AudioRecorder() {
       streamRef.current.getTracks().forEach(track => track.stop());
     }
   };
-
+  const toggleRecord = () => {
+    if (isRecording) {
+      stopRecording();
+    } else {
+      startRecording();
+    }
+  };
   return (
     <div>
-      <h2>🎙 Record Audio</h2>
-      <button onClick={isRecording ? stopRecording : startRecording}>
-        {isRecording ? '🛑 Stop Recording' : '🎤 Start Recording'}
+
+      <button onClick={toggleRecord} className={"bg-amber-500"}>
+        {isRecording ? 'Stop Recording' : 'Start Recording'}
       </button>
       <div>
         <h3>🧠 Gemini's Response:</h3>

@@ -10,7 +10,7 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
@@ -21,4 +21,9 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  transition: filter 0.3s ease; /* Smooth transition for the filter effect */
+}
+
+.inverted { /* Inverted color scheme */
+  filter: invert(100%) hue-rotate(180deg); /* Invert colors and adjust hues */
 }
