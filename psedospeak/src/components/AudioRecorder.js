@@ -77,12 +77,6 @@ export default function AudioRecorder() {
         <h3>🧠 Gemini's Response:</h3>
         {response ? (
           <>
-
-          <ul>
-            {response.split('\n').map((line, index) => (
-              <li key={index}>{line}</li>
-            ))}
-          </ul>
           <div className="p-8"  style={{ color: 'red' }}>
           <h1 className="text-2xl font-bold mb-4">App Functionality</h1>
           <Card>
@@ -90,14 +84,16 @@ export default function AudioRecorder() {
               <h2 className="text-lg font-semibold">Pseudo Code Editor</h2>
             </CardHeader>
             <CardBody>
-              <Textarea
-                className="w-full h-48"
-                description="Pseudo code open editor."
-                label="Description"
-                placeholder="Enter your description"
-                variant="faded"
-                size="lg"
-              />
+            <Textarea
+              className="w-full h-48"
+              description=""
+              label=""
+              placeholder="Enter your description"
+              variant="faded"
+              size="lg"
+              value={response} 
+              onChange={(e) => setResponse(e.target.value)}
+            />
             </CardBody>
             <CardFooter>
               <p>Start writing your pseudo code here!</p>
