@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import fs from "fs/promises";
 import path from "path";
-
+export const runtime = 'edge';
 const API_KEY = "AIzaSyBA8Dj4xZ2tLlcK9jZtvkjpf_qMZLKGp6U";
 const genAI = new GoogleGenerativeAI(API_KEY);
 
@@ -51,7 +51,7 @@ export async function POST(req) {
     const extractedInput = inputMatch ? inputMatch[1].trim() : "No description available";
     const extractedOutput = outputMatch ? outputMatch[1].trim() : "No pseudocode generated";
     const extractedFeedback = feedbackMatch ? feedbackMatch[1].trim() : "No feedback available";
-    
+
     let extractedVariables = [];
     if (variablesMatch) {
       extractedVariables = variablesMatch[1]
