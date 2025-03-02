@@ -1,9 +1,6 @@
 {
-  "input": "The audio requests pseudocode for a login system that redirects to a dashboard upon successful authentication.",
-  "output": "```\nBEGIN\n  Prompt user for username and password.\n  Validate username and password against a database or stored credentials.\n  IF validation is successful THEN\n    Redirect user to the dashboard.\n  ELSE\n    Display an error message indicating invalid credentials.\n  ENDIF\nEND\n```",
-  "variables": [
-    "* username",
-    "* password"
-  ],
-  "feedback": "The pseudocode is a good high-level representation of the login process.  However, it lacks detail on error handling (e.g., type of error message, retry attempts) and security considerations (e.g., password hashing, input sanitization).  Adding these aspects would improve its robustness and security.  Furthermore, specifying the method of accessing and validating user credentials (e.g., database query, API call) would enhance clarity."
+  "input": "The audio discusses dogs.",
+  "output": "No pseudocode generated",
+  "variables": [],
+  "feedback": "No feedback available"
 }
