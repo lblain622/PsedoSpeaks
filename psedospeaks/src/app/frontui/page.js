@@ -1,7 +1,7 @@
 
 import {Textarea} from "@heroui/react";
 import {Card, CardHeader, CardBody, CardFooter} from "@heroui/react";
-export const runtime = 'edge';
+
 export default function Dashboard() {
   return (
     <div className="p-8">
@@ -27,3 +27,4 @@ export default function Dashboard() {
     </div>
   );
 }
+

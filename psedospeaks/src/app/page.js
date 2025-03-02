@@ -1,7 +1,7 @@
 import AudioRecorder from "@/components/AudioRecorder";
 import ToggleInvertColors from "@/components/theme";
-export const runtime = 'edge';
-export default function Home() {
+
+export default function Main() {
   return (
     <div>
       <div style={{ position: "fixed", top: "10px", right: "10px", zIndex: 1000 }}>

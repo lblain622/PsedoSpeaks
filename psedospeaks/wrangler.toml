@@ -1,0 +1,15 @@
+name = "psd-speaker"
+type = "javascript"
+main= "src/index.js"
+compatibility_date = "2025-03-02"
+
+
+[build]
+command = "npm run build"
+
+[env.production]
+workers_dev = true
+
+[[kv_namespaces]]
+binding = "PS"
+id = "d0886f236a2c46ca9bfdb9a6d13230b9"
