@@ -11,7 +11,6 @@ export default function Home() {
             <h1 className="text-2xl font-bold mb-4">🗣 Talk to Gemini</h1>
             <ToggleInvertColors/>
             <AudioRecorder />
-
         </div>
     );
 }
