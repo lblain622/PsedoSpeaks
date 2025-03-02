@@ -6,11 +6,16 @@
 		"deploy": "wrangler deploy",
 		"dev": "wrangler dev",
 		"start": "wrangler dev",
-		"test": "vitest"
+		"test": "vitest"git
 	},
 	"devDependencies": {
 		"@cloudflare/vitest-pool-workers": "^0.6.4",
 		"vitest": "~2.1.9",
 		"wrangler": "^3.111.0"
+	},
+	"dependencies": {
+		"@cloudflare/next-on-pages": "^1.13.8",
+		"@google/generative-ai": "^0.22.0",
+		"@heroui/react": "^2.7.4"
 	}
 }
