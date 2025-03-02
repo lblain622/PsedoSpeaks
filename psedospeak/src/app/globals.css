@@ -16,16 +16,21 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --font-fancy: 'Pacifico', cursive;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif, var(--font-fancy);
+  font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   transition: filter 0.3s ease; /* Smooth transition for the filter effect */
 }
 
 .inverted { /* Inverted color scheme */
   filter: invert(100%) hue-rotate(180deg); /* Invert colors and adjust hues */
+}
+
+.system-font {
+  font-family: Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
