@@ -1,0 +1,20 @@
+{
+  "name": "psedospeaksv2",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2024-11-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "minify": true,
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "upload_source_maps": true,
+  "kv_namespaces": [
+  {"binding":"PS_KV" ,
+    "id":"df4b257950f54cdc9b677747b7994768"}
+]
+
+}
