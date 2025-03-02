@@ -1,9 +1,0 @@
-name = "psedospeaks"
-compatibility_date = "2024-03-02"  # Ajusta la fecha según la actual
-
-[[kv_namespaces]]
-"binding"="PS"
-"id"="d0886f236a2c46ca9bfdb9a6d13230b9"
-
-[vars]
-NODE_ENV = "production"
