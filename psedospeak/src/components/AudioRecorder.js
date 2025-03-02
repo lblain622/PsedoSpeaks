@@ -13,6 +13,8 @@ export default function AudioRecorder() {
   const audioChunksRef = useRef([]);
   const streamRef = useRef(null);
 
+  const [value, setValue] = useState(''); // for TextArea response
+
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -79,21 +81,20 @@ export default function AudioRecorder() {
         <h3>🧠 Gemini's Response:</h3>
         {response ? (
           <>
-            <div className="p-4 sm:p-6 lg:p-8" style={{ color: 'red' }}>
-              <h1 className="text-2xl font-bold mb-4">App Functionality</h1>
-                  <h2 className="text-lg font-semibold">Pseudo Code Editor</h2>
-
-                  <Textarea
-                    className="w-full h-96 p-4 text-lg resize-y"
-                    description=""
-                    label=""
-                    placeholder="Start writing your pseudo code here!"
-                    variant="faded"
-                    size="lg"
-                    value={response}
-                    onChange={(e) => setResponse(e.target.value)}
-                  />
-            </div>
+            <h1 className="text-2xl font-bold mb-4">App Functionality</h1>
+            <h2 className="text-lg font-semibold">Pseudo Code Editor</h2>
+          <div className="flex justify-center items-center h-screen" style={{color:'red'}}> 
+                <Textarea
+                  className="w-full sm:w-96 md:w-[800px] lg:max-w-4xl h-96"
+                  description=""
+                  label=""
+                  placeholder="Start writing your pseudo code here!"
+                  variant="faded"
+                  size="lg"
+                  value={response}
+                  onChange={(e) => setResponse(e.target.value)}
+                />
+              </div>
           </>
         ) : (
           <p>No response yet.</p>
