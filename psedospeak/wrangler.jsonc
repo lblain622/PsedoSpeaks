@@ -10,13 +10,13 @@
     "nodejs_compat"
   ],
 
-  "pages_build_output_dir": ".vercel/output/static",
   "observability": {
     "enabled": true
   },
   "kv_namespaces": [
     {
       "binding": "PS",
-      "id": "d0886f236a2c46ca9bfdb9a6d13230b9",
-}
+      "id": "d0886f236a2c46ca9bfdb9a6d13230b9"
+}],
+  "pages_build_output_dir": ".open-next/static"
     }
