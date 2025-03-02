@@ -1,21 +1,31 @@
 {
 	"name": "ps-speak",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"deploy": "wrangler deploy",
-		"dev": "wrangler dev",
-		"start": "wrangler dev",
-		"test": "vitest"git
-	},
-	"devDependencies": {
-		"@cloudflare/vitest-pool-workers": "^0.6.4",
-		"vitest": "~2.1.9",
-		"wrangler": "^3.111.0"
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"pages:build": "npx @cloudflare/next-on-pages",
+		"preview": "npm run pages:build && wrangler pages dev",
+		"deploy": "npm run pages:build && wrangler pages deploy"
 	},
 	"dependencies": {
-		"@cloudflare/next-on-pages": "^1.13.8",
+		"@google-cloud/speech": "^6.7.1",
 		"@google/generative-ai": "^0.22.0",
-		"@heroui/react": "^2.7.4"
+		"@heroui/react": "^2.7.4",
+		"next": "15.1.6",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"devDependencies": {
+		"@cloudflare/next-on-pages": "^1.13.8",
+		"@cloudflare/workers-types": "^4.20250224.0",
+		"autoprefixer": "^10.4.20",
+		"postcss": "^8.5.3",
+		"tailwindcss": "^4.0.9",
+		"vercel": "^41.3.0",
+		"wrangler": "^3.111.0"
 	}
 }
