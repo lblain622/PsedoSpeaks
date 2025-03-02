@@ -4,7 +4,7 @@
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "psedospeak",
+  "name": "psedospeaks",
   "compatibility_date": "2025-02-24",
   "compatibility_flags": [
     "nodejs_compat"
