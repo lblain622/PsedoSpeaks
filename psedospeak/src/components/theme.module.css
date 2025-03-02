@@ -1,0 +1,15 @@
+.toggle-invert {
+    filter: none !important; 
+    transform: none !important; 
+    position: fixed !important; 
+    top: 10px !important; 
+    right: 10px !important; 
+    z-index: 1000 !important; 
+    transition: none !important; 
+  }
+  
+.inverted .audio-recorder-container {
+    filter: none; 
+    background-color: #0a0a0a;
+    color: #ededed; 
+}
